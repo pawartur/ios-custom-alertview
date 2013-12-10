@@ -26,6 +26,7 @@ CGFloat buttonSpacerHeight = 0;
 @synthesize delegate;
 @synthesize buttonTitles;
 @synthesize useMotionEffects;
+@synthesize displayOverKeyboard;
 
 - (id)initWithParentView: (UIView *)_parentView
 {
@@ -41,8 +42,9 @@ CGFloat buttonSpacerHeight = 0;
 
         delegate = self;
         useMotionEffects = false;
+        displayOverKeyboard = false;
         buttonTitles = @[@"Close"];
-
+        
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceOrientationDidChange:) name:UIDeviceOrientationDidChangeNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
@@ -105,7 +107,8 @@ CGFloat buttonSpacerHeight = 0;
         }
 
         [self setFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
-        [[[[UIApplication sharedApplication] windows] firstObject] addSubview:self];
+        UIWindow *window = self.displayOverKeyboard ? [[[UIApplication sharedApplication] windows] lastObject] : [[[UIApplication sharedApplication] windows] firstObject];
+        [window addSubview:self];
     }
 
     [UIView animateWithDuration:0.2f delay:0.0 options:UIViewAnimationOptionCurveEaseInOut
