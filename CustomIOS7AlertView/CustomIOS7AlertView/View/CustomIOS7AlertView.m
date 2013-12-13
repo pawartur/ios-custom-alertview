@@ -233,7 +233,15 @@ CGFloat buttonSpacerHeight = 0;
 
         UIButton *closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
 
-        [closeButton setFrame:CGRectMake(i * buttonWidth, container.bounds.size.height - buttonHeight, buttonWidth, buttonHeight)];
+        if (i > 0) {
+            [closeButton setFrame:CGRectMake(i * buttonWidth + 1, container.bounds.size.height - buttonHeight, buttonWidth - 1, buttonHeight)];
+            UIView *separator = [[UIView alloc] initWithFrame:CGRectMake(i * buttonWidth, container.bounds.size.height - buttonHeight, 1, buttonHeight)];
+            separator.backgroundColor = [UIColor lightGrayColor];
+            [container addSubview:separator];
+        }else{
+            [closeButton setFrame:CGRectMake(i * buttonWidth, container.bounds.size.height - buttonHeight, buttonWidth, buttonHeight)];
+        }
+        
 
         [closeButton addTarget:self action:@selector(customIOS7dialogButtonTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
         [closeButton setTag:i];
