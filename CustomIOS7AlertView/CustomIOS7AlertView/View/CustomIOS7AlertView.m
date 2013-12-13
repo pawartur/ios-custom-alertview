@@ -377,7 +377,10 @@ CGFloat buttonSpacerHeight = 0;
 
     [UIView animateWithDuration:0.2f delay:0.0 options:UIViewAnimationOptionTransitionNone
 					 animations:^{
-                         dialogView.frame = CGRectMake((screenSize.width - dialogSize.width) / 2, (screenSize.height - keyboardSize.height - dialogSize.height) / 2, dialogSize.width, dialogSize.height);
+                         CGRect dialogFrame = CGRectMake((screenSize.width - dialogSize.width) / 2, (screenSize.height - keyboardSize.height - dialogSize.height) / 2, dialogSize.width, dialogSize.height);
+                         if (dialogFrame.origin.y < 20)
+                             dialogFrame.origin.y = 20;
+                         dialogView.frame = dialogFrame;
 					 }
 					 completion:nil
 	 ];
