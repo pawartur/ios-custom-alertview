@@ -45,7 +45,7 @@ CGFloat buttonSpacerHeight = 0;
         displayOverKeyboard = false;
         buttonTitles = @[@"Close"];
         
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceOrientationDidChange:) name:UIDeviceOrientationDidChangeNotification object:nil];
+        //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceOrientationDidChange:) name:UIDeviceOrientationDidChangeNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     }
@@ -88,6 +88,7 @@ CGFloat buttonSpacerHeight = 0;
 
     // Attached to the top most window (make sure we are using the right orientation):
     } else {
+        /*
         UIInterfaceOrientation interfaceOrientation = [[UIApplication sharedApplication] statusBarOrientation];
         switch (interfaceOrientation) {
             case UIInterfaceOrientationLandscapeLeft:
@@ -105,7 +106,7 @@ CGFloat buttonSpacerHeight = 0;
             default:
                 break;
         }
-
+         */
         [self setFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
         UIWindow *window = self.displayOverKeyboard ? [[[UIApplication sharedApplication] windows] lastObject] : [[[UIApplication sharedApplication] windows] firstObject];
         [window addSubview:self];
@@ -316,7 +317,7 @@ CGFloat buttonSpacerHeight = 0;
 
 - (void)dealloc
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIDeviceOrientationDidChangeNotification object:nil];
+    //[[NSNotificationCenter defaultCenter] removeObserver:self name:UIDeviceOrientationDidChangeNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
 }
