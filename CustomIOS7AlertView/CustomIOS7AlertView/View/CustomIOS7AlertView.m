@@ -88,7 +88,6 @@ CGFloat buttonSpacerHeight = 0;
 
     // Attached to the top most window (make sure we are using the right orientation):
     } else {
-        /*
         UIInterfaceOrientation interfaceOrientation = [[UIApplication sharedApplication] statusBarOrientation];
         switch (interfaceOrientation) {
             case UIInterfaceOrientationLandscapeLeft:
@@ -100,14 +99,14 @@ CGFloat buttonSpacerHeight = 0;
                 break;
 
             case UIInterfaceOrientationPortraitUpsideDown:
-                self.transform = CGAffineTransformMakeRotation(M_PI * 180.0 / 180.0);
+                //self.transform = CGAffineTransformMakeRotation(M_PI * 180.0 / 180.0);
                 break;
 
             default:
                 break;
         }
-         */
         [self setFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+
         UIWindow *window = self.displayOverKeyboard ? [[[UIApplication sharedApplication] windows] lastObject] : [[[UIApplication sharedApplication] windows] firstObject];
         [window addSubview:self];
     }
@@ -146,10 +145,11 @@ CGFloat buttonSpacerHeight = 0;
 {
     CATransform3D currentTransform = dialogView.layer.transform;
 
+    /*
     CGFloat startRotation = [[dialogView valueForKeyPath:@"layer.transform.rotation.z"] floatValue];
     CATransform3D rotation = CATransform3DMakeRotation(-startRotation + M_PI * 270.0 / 180.0, 0.0f, 0.0f, 0.0f);
-
     dialogView.layer.transform = CATransform3DConcat(rotation, CATransform3DMakeScale(1, 1, 1));
+          */
     dialogView.layer.opacity = 1.0f;
 
     [UIView animateWithDuration:0.2f delay:0.0 options:UIViewAnimationOptionTransitionNone
