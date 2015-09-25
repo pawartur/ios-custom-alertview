@@ -167,6 +167,16 @@ CGFloat buttonSpacerHeight = 0;
 	 ];
 }
 
+- (void)hide
+{
+    self.alpha = 0.0;
+}
+
+- (void)unhide
+{
+    self.alpha = 1.0;
+}
+
 - (void)setSubView: (UIView *)subView
 {
     containerView = subView;

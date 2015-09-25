@@ -40,6 +40,8 @@
 
 - (void)show;
 - (void)close;
+- (void)hide;
+- (void)unhide;
 
 - (IBAction)customIOS7dialogButtonTouchUpInside:(id)sender;
 - (void)setOnButtonTouchUpInside:(void (^)(CustomIOS7AlertView *alertView, int buttonIndex))onButtonTouchUpInside;
